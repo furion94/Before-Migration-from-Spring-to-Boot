@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lgr.migration.spring.model.IMigDao">
+
+	<select id="selectList" resultType="MVO">
+		SELECT MIG_SEQ, MIG_WRITER, MIG_TITLE FROM MIGBOARD
+	</select>
+	
+	<select id="selectDetail" parameterType="java.lang.String" resultType="MVO">
+		SELECT MIG_SEQ, MIG_WRITER, MIG_TITLE, MIG_CONTENT FROM MIGBOARD WHERE MIG_SEQ = #{mig_seq}
+	</select>
+	
+	<insert id="insertBoard" parameterType="MVO">
+		INSERT INTO MIGBOARD (MIG_WRITER, MIG_TITLE, MIG_CONTENT) VALUES (#{mig_writer}, #{mig_title}, #{mig_content})
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="java.lang.String">
+		DELETE FROM MIGBOARD WHERE MIG_SEQ = #{mig_seq}	
+	</delete>
+	
+	<update id="updateBoard" parameterType="MVO">
+		UPDATE MIGBOARD SET MIG_TITLE = #{mig_title}, MIG_CONTENT = #{mig_content} WHERE MIG_SEQ = #{mig_seq}
+	</update>
+
+</mapper>
